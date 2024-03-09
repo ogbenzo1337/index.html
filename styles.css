@@ -2,13 +2,15 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4;
+    background-image: url("https://img.freepik.com/darmowe-wektory/e-book-tlo-projektu_1300-420.jpg?w=826&t=st=1710026361~exp=1710026961~hmac=ad453956ba6502f9781580bed4884d6bd55d85299641ce67beddcf165917ad54");
+    background-size: cover;
+    background-position: center;
     color: #333;
     transition: background-color 0.5s ease;
 }
 
 header {
-    background-color: #333;
+    background-color: rgba(51, 51, 51, 0.8); /* dodajemy półprzezroczysty kolor na nagłówku */
     color: #fff;
     padding: 20px;
     text-align: center;
@@ -29,7 +31,7 @@ h1 {
     max-width: 800px;
     margin: 20px auto;
     padding: 0 20px;
-    background-color: #fff;
+    background-color: rgba(255, 255, 255, 0.8); /* dodajemy półprzezroczysty biały kolor na kontenerze */
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     transition: box-shadow 0.5s ease;
