@@ -8,7 +8,7 @@
 </head>
 <body>
     <header>
-        <h1 class="animated-heading">klep z ebookami o tradingu</h1>
+        <h1 class="animated-heading">Sklep z ebookami o tradingu</h1>
         <div id="loginStatus">
             <!-- Tutaj będzie wyświetlany status zalogowania -->
         </div>
@@ -25,6 +25,7 @@
                 <input type="password" id="password" name="password" required><br><br>
                 <button type="submit">Zarejestruj się</button>
             </form>
+            <div id="registrationMessage" style="display: none;"></div>
         </div>
 
         <div id="loginOption" style="display: none;">
@@ -81,12 +82,17 @@
                 });
 
                 const data = await response.json();
+                const registrationMessage = document.getElementById('registrationMessage');
                 if (response.ok) {
-                    alert(data); // Wyświetlenie komunikatu po prawidłowej rejestracji
+                    registrationMessage.innerText = data;
+                    registrationMessage.style.color = 'green';
+                    registrationMessage.style.display = 'block';
                     document.getElementById('registerForm').style.display = 'none'; // Ukrycie formularza rejestracji
                     document.getElementById('loginOption').style.display = 'block'; // Pokazanie opcji logowania
                 } else {
-                    alert(data); // Wyświetlenie komunikatu z serwera
+                    registrationMessage.innerText = data;
+                    registrationMessage.style.color = 'red';
+                    registrationMessage.style.display = 'block';
                 }
             } catch (error) {
                 console.error('Wystąpił błąd podczas rejestracji:', error);
