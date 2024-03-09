@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const bcrypt = require('bcryptjs');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -25,30 +26,52 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 // Endpoint do rejestracji użytkownika
-app.post('/register', (req, res) => {
+app.post('/register', async (req, res) => {
     const { username, password } = req.body;
 
-    // Sprawdzenie, czy użytkownik o podanej nazwie już istnieje
-    User.findOne({ username: username }, (err, foundUser) => {
-        if (err) {
-            res.status(500).send('Wystąpił błąd podczas rejestracji.');
-        } else if (foundUser) {
-            res.status(400).send('Użytkownik o podanej nazwie już istnieje.');
-        } else {
-            // Zapisanie nowego użytkownika do bazy danych
-            const newUser = new User({
-                username: username,
-                password: password
-            });
-            newUser.save(err => {
-                if (err) {
-                    res.status(500).send('Wystąpił błąd podczas rejestracji.');
-                } else {
-                    res.status(200).send('Użytkownik został zarejestrowany pomyślnie.');
-                }
-            });
+    try {
+        // Sprawdzenie, czy użytkownik o podanej nazwie już istnieje
+        const existingUser = await User.findOne({ username: username });
+        if (existingUser) {
+            return res.status(400).send('Użytkownik o podanej nazwie już istnieje.');
         }
-    });
+
+        // Haszowanie hasła
+        const hashedPassword = await bcrypt.hash(password, 10);
+
+        // Zapisanie nowego użytkownika do bazy danych
+        const newUser = new User({
+            username: username,
+            password: hashedPassword
+        });
+        await newUser.save();
+        res.status(201).send('Użytkownik został zarejestrowany pomyślnie.');
+    } catch (error) {
+        res.status(500).send('Wystąpił błąd podczas rejestracji.');
+    }
+});
+
+// Endpoint do logowania użytkownika
+app.post('/login', async (req, res) => {
+    const { username, password } = req.body;
+
+    try {
+        // Wyszukanie użytkownika w bazie danych
+        const user = await User.findOne({ username: username });
+        if (!user) {
+            return res.status(404).send('Nieprawidłowa nazwa użytkownika lub hasło.');
+        }
+
+        // Porównanie hasła
+        const passwordMatch = await bcrypt.compare(password, user.password);
+        if (!passwordMatch) {
+            return res.status(401).send('Nieprawidłowa nazwa użytkownika lub hasło.');
+        }
+
+        res.status(200).send('Zalogowano pomyślnie.');
+    } catch (error) {
+        res.status(500).send('Wystąpił błąd podczas logowania.');
+    }
 });
 
 app.listen(PORT, () => console.log(`Serwer uruchomiony na porcie ${PORT}`));
