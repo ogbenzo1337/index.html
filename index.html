@@ -55,9 +55,28 @@
         </div>
     </div>
 
-    <script src="script.js"></script>
     <script>
-        // Funkcje do obsługi rejestracji, loginu itp. znajdą się tutaj
+        document.getElementById('registrationForm').addEventListener('submit', async function(event) {
+            event.preventDefault();
+            
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            try {
+                const response = await fetch('/register', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ username, password })
+                });
+
+                const data = await response.json();
+                alert(data); // Wyświetlenie komunikatu z serwera
+            } catch (error) {
+                console.error('Wystąpił błąd podczas rejestracji:', error);
+            }
+        });
     </script>
 </body>
 </html>
