@@ -8,16 +8,19 @@
 </head>
 <body>
     <header>
-        <h1>Sklep z ebookami o tradingu</h1>
+        <h1 class="animated-heading">Sklep z ebookami o tradingu</h1>
+        <div id="loginStatus">
+            <!-- Tutaj będzie wyświetlany status zalogowania -->
+        </div>
     </header>
 
     <div class="container">
         <div class="ebook">
             <h2>E-book: Podstawy Tradingu</h2>
-            <img src="ebook.jpg" alt="Podstawy Tradingu">
+            <img src="podstawy_tradingu.jpg" alt="Podstawy Tradingu">
             <p>W tej książce dowiesz się podstawowych zagadnień związanych z tradingiem na rynku finansowym.</p>
             <p>Cena: $19.99</p>
-            <a href="https://www.paypal.com"><button>Kup teraz</button></a>
+            <button onclick="buyNow()">Kup teraz</button>
         </div>
 
         <div class="ebook">
@@ -25,8 +28,24 @@
             <img src="strategie_inwestycyjne.jpg" alt="Strategie Inwestycyjne">
             <p>W tej książce znajdziesz różnorodne strategie inwestycyjne, które pomogą Ci osiągnąć sukces na rynkach finansowych.</p>
             <p>Cena: $29.99</p>
-            <a href="https://www.paypal.com"><button>Kup teraz</button></a>
+            <button onclick="buyNow()">Kup teraz</button>
         </div>
     </div>
+
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2>Zaloguj się</h2>
+            <form id="loginForm" onsubmit="login(event)">
+                <label for="username">Nazwa użytkownika:</label><br>
+                <input type="text" id="username" name="username" required><br>
+                <label for="password">Hasło:</label><br>
+                <input type="password" id="password" name="password" required><br><br>
+                <button type="submit">Zaloguj się</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
