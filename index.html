@@ -8,13 +8,25 @@
 </head>
 <body>
     <header>
-        <h1 class="animated-heading">Sklep z ebookami o trading</h1>
+        <h1 class="animated-heading">Sklep z ebookami o tradingu</h1>
         <div id="loginStatus">
             <!-- Tutaj będzie wyświetlany status zalogowania -->
         </div>
     </header>
 
     <div class="container">
+        <!-- Formularz rejestracji -->
+        <div id="registerForm">
+            <h2>Rejestracja</h2>
+            <form id="registrationForm">
+                <label for="username">Nazwa użytkownika:</label><br>
+                <input type="text" id="username" name="username" required><br>
+                <label for="password">Hasło:</label><br>
+                <input type="password" id="password" name="password" required><br><br>
+                <button type="submit">Zarejestruj się</button>
+            </form>
+        </div>
+
         <div class="ebook">
             <h2>E-book: Podstawy Tradingu</h2>
             <img src="podstawy_tradingu.jpg" alt="Podstawy Tradingu">
