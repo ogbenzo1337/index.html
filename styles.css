@@ -10,7 +10,7 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-image: linear-gradient(90deg, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.8)), url("https://img.freepik.com/darmowe-wektory/e-book-tlo-projektu_1300-420.jpg?w=826&t=st=1710026361~exp=1710026961~hmac=ad453956ba6502f9781580bed4884d6bd55d85299641ce67beddcf165917ad54");
+    background-image: linear-gradient(90deg, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.8));
     background-size: 400% 400%;
     animation: backgroundAnimation 20s infinite alternate;
     color: #fff;
