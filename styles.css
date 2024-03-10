@@ -28,10 +28,9 @@ header {
 
 main {
   display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  flex-wrap: wrap;
-  padding: 20px;
+  justify-content: center; /* Wyśrodkowanie poziome */
+  align-items: center; /* Wyśrodkowanie pionowe */
+  height: 100vh; /* Ustawienie wysokości na pełną wysokość widoku */
 }
 
 .product {
