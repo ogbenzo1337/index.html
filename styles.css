@@ -2,6 +2,7 @@ body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
+  overflow: hidden; /* Zapobiega wyświetlaniu pasków przewijania */
 }
 
 header {
@@ -41,11 +42,6 @@ main {
   width: 300px;
 }
 
-.product img {
-  width: 100%;
-  border-radius: 5px;
-}
-
 .product-info {
   padding: 10px 0;
 }
@@ -69,4 +65,23 @@ button {
 
 button:hover {
   background-color: #555;
+}
+
+/* Animacja tła */
+body {
+  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  background-size: 400% 400%;
+  animation: gradientAnimation 15s ease infinite;
+}
+
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
