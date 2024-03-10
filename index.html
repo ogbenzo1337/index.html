@@ -1,103 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sklep z ebookami o tradingu</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sklep internetowy</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header>
-        <h1 class="animated-heading">Sklep z ebookami o tradingu</h1>
-        <div id="loginStatus">
-            <!-- Tutaj będzie wyświetlany status zalogowania -->
-        </div>
-    </header>
+  <header>
+    <h1 class="animated-heading">Sklep internetowy</h1>
+  </header>
+  
+  <main>
+    <section class="product">
+      <img src="product1.jpg" alt="Product 1">
+      <div class="product-info">
+        <h2>Produkt 1</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        <button>Kup teraz</button>
+      </div>
+    </section>
 
-    <div class="container">
-        <!-- Formularz rejestracji -->
-        <div id="registerForm">
-            <h2>Rejestracja</h2>
-            <form id="registrationForm">
-                <label for="username">Nazwa użytkownika:</label><br>
-                <input type="text" id="username" name="username" required><br>
-                <label for="password">Hasło:</label><br>
-                <input type="password" id="password" name="password" required><br><br>
-                <button type="submit">Zarejestruj się</button>
-            </form>
-            <div id="registrationMessage" style="display: none;"></div>
-        </div>
+    <section class="product">
+      <img src="product2.jpg" alt="Product 2">
+      <div class="product-info">
+        <h2>Produkt 2</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        <button>Kup teraz</button>
+      </div>
+    </section>
 
-        <div id="loginOption" style="display: none;">
-            <!-- Pokaże się po pomyślnej rejestracji -->
-            <h2>Zaloguj się</h2>
-            <button onclick="openModal()">Zaloguj się</button>
-        </div>
+    <!-- Dodaj kolejne produkty w podobny sposób -->
+  </main>
 
-        <div class="ebook">
-            <h2>E-book: Podstawy Tradingu</h2>
-            <img src="podstawy_tradingu.jpg" alt="Podstawy Tradingu">
-            <p>W tej książce dowiesz się podstawowych zagadnień związanych z tradingiem na rynku finansowym.</p>
-            <p>Cena: $19.99</p>
-            <button onclick="buyNow()">Kup teraz</button>
-        </div>
-
-        <div class="ebook">
-            <h2>E-book: Strategie Inwestycyjne</h2>
-            <img src="strategie_inwestycyjne.jpg" alt="Strategie Inwestycyjne">
-            <p>W tej książce znajdziesz różnorodne strategie inwestycyjne, które pomogą Ci osiągnąć sukces na rynkach finansowych.</p>
-            <p>Cena: $29.99</p>
-            <button onclick="buyNow()">Kup teraz</button>
-        </div>
-    </div>
-
-    <div id="loginModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal()">&times;</span>
-            <h2>Zaloguj się</h2>
-            <form id="loginForm" onsubmit="login(event)">
-                <label for="username">Nazwa użytkownika:</label><br>
-                <input type="text" id="username" name="username" required><br>
-                <label for="password">Hasło:</label><br>
-                <input type="password" id="password" name="password" required><br><br>
-                <button type="submit">Zaloguj się</button>
-            </form>
-        </div>
-    </div>
-
-    <script>
-        document.getElementById('registrationForm').addEventListener('submit', async function(event) {
-            event.preventDefault();
-            
-            const username = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
-
-            try {
-                const response = await fetch('/register', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ username, password })
-                });
-
-                const data = await response.json();
-                const registrationMessage = document.getElementById('registrationMessage');
-                if (response.ok) {
-                    registrationMessage.innerText = data;
-                    registrationMessage.style.color = 'green';
-                    registrationMessage.style.display = 'block';
-                    document.getElementById('registerForm').style.display = 'none'; // Ukrycie formularza rejestracji
-                    document.getElementById('loginOption').style.display = 'block'; // Pokazanie opcji logowania
-                } else {
-                    registrationMessage.innerText = data;
-                    registrationMessage.style.color = 'red';
-                    registrationMessage.style.display = 'block';
-                }
-            } catch (error) {
-                console.error('Wystąpił błąd podczas rejestracji:', error);
-            }
-        });
-    </script>
+  <script src="script.js"></script>
 </body>
 </html>
